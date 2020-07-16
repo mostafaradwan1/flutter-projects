@@ -23,15 +23,31 @@ class Result extends StatelessWidget {
         children: <Widget>[
           Text(
             resultPhrase,
-            style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 36,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
             textAlign: TextAlign.center,
           ),
           FlatButton(
             child: Text(
               'GO TO NEXT LESSON',
             ),
+            color: Colors.black,
             textColor: Colors.white,
             onPressed: resetHandler,
+          ),
+          FlatButton(
+            color: Colors.white,
+            textColor: Colors.black,
+            padding: EdgeInsets.all(8.0),
+            splashColor: Colors.blueAccent,
+            onPressed: () {},
+            child: Text(
+              "Back to courses",
+              style: TextStyle(fontSize: 20.0),
+            ),
           ),
         ],
       ),
