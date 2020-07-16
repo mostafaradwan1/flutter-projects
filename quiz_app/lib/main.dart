@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/answers.dart';
-import 'Question.dart';
-// import './dropDown.dart';
-// import './videoPlayer.dart';
+import 'package:quiz_app/Quiz.dart';
+import 'package:quiz_app/result.dart';
 
-// import 'chew.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatefulWidget {
@@ -15,41 +12,82 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final questions = const [
+    {
+      'questionText':
+          'كم عدد الدروس القادمة الخاصة بطريقة التفكير السليمة لأي رائد الأعمال',
+      'answers': [
+        {'text': '10', 'score': 1},
+        {'text': '11', 'score': 0},
+        {'text': '12', 'score': 0},
+        {'text': '14', 'score': 0},
+      ],
+    },
+    {
+      'questionText': 'تغيير طريقة التفكير هو أمر شاق، لذا يجب عليك',
+      'answers': [
+        {'text': 'ان تشاهد ما تشاء من الدروس طالما انك تفهم', 'score': 3},
+        {'text': 'yes', 'score': 11},
+        {'text': 'yes', 'score': 5},
+        {'text': 'yes', 'score': 9},
+      ],
+    },
+    {
+      'questionText':
+          'تلكي تفهم المحتوي يجب أن يكون هدفك الأساسي هو إنشاء شركة كبيرة دخلها السنوي مليار دولار أو أكثر',
+      'answers': [
+        {'text': 'yes', 'score': 0},
+        {'text': 'no', 'score': 1},
+      ],
+    },
+    {
+      'questionText':
+          'تغيير طريقة التفكير أمر شاق وإستيعاب المعلومات التي في الدروس لا يعني إطلاقا أن طريقة تفكيرك بدأت في التغيير',
+      'answers': [
+        {'text': 'yes', 'score': 1},
+        {'text': 'yes', 'score': 1},
+        {'text': 'yes', 'score': 1},
+        {'text': 'yes', 'score': 1},
+      ],
+    },
+    {
+      'questionText':
+          'تغيير طريقة التفكير أمر شاق وإستيعاب المعلومات التي في الدروس لا يعني إطلاقا أن طريقة تفكيرك بدأت في التغيير',
+      'answers': [
+        {'text': '10', 'score': 1},
+        {'text': '10', 'score': 1},
+        {'text': '10', 'score': 1},
+        {'text': '10', 'score': 1},
+      ],
+    },
+  ];
   var _questionIndex = 0;
-  void _answerQuestion() {
+  var _totalScore = 0;
+
+  void _answerQuestion(int score) {
+    _totalScore += score;
+
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
-    print(_questionIndex);
+  }
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
   }
 
   @override //(to make clear you are not accedently override ) not required decorator provided by flutter to make code cleaner
   Widget build(BuildContext context) {
-    var questions = [
-      'كم عدد الدروس القادمة الخاصة بطريقة التفكير السليمة لأي رائد الأعمال',
-      'تغيير طريقة التفكير هو أمر شاق، لذا يجب عليك',
-      'تغيير طريقة التفكير أمر شاق وإستيعاب المعلومات التي في الدروس لا يعني إطلاقا أن طريقة تفكيرك بدأت في التغيير',
-      'لكي تفهم المحتوي يجب أن يكون هدفك الأساسي هو إنشاء شركة كبيرة دخلها السنوي مليار دولار أو أكثر',
-      'يجب أن يكون هدفك متعلق بالعمل حتي تستطيع النجاح في مجال ريادة الأعمال',
-    ];
-    var answers = [
-      [10, 11, 12, 14],
-      [
-        'ان تشاهد ما تشاء من الدروس يوميا طالما تفهم',
-        'ان تشاهد درس واحد فقط يوميا'
-      ],
-      ['صح', 'خطا'],
-      ['صحيح'],
-      ['خطا ', 'صحيح'],
-    ];
-
     return MaterialApp(
         home: Scaffold(
           backgroundColor: Colors.teal,
           appBar: AppBar(
             leading: IconButton(
               padding: EdgeInsets.all(5.0),
-              icon: Image.asset('assets/images/logo.png'),
+              icon: Image.asset('images/logo.png'),
               onPressed: null,
             ),
             title: Text(
@@ -67,39 +105,26 @@ class _MyAppState extends State<MyApp> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
                     child: Image.asset(
-                      'assets/images/profilePic.png',
+                      'images/profilePic.png',
                     ),
                   ))
             ],
             backgroundColor: Colors.white,
           ),
-          body: Column(
-            children: [
-              QUestion(questions[_questionIndex]),
-              Answer(
-                answers[_questionIndex],
-                _answerQuestion
-              ),
-              
-            ],
-          ),
+          body: _questionIndex < questions.length
+              ? Column(
+                  children: [
+                    Quiz(
+                        questions: questions,
+                        answerQuestion: _answerQuestion,
+                        questionIndex: _questionIndex)
+                  ],
+                )
+              : Result(_totalScore, _resetQuiz),
         ),
         theme: ThemeData(
-          // Define the default brightness and colors.
-          brightness: Brightness.light,
-          primaryColor: Colors.teal,
-          accentColor: Colors.teal,
           backgroundColor: Colors.teal,
-          // Define the default font family.
-          fontFamily: 'Georgia',
-
-          // Define the default TextTheme. Use this to specify the default
-          // text styling for headlines, titles, bodies of text, and more.
-          textTheme: TextTheme(
-            headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-            headline6: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),
-            bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
-          ),
+          fontFamily: 'Hind',
         ));
   }
 }
