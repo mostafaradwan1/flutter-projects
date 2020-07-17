@@ -17,7 +17,43 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final questions = const [
+  
+
+  @override //(to make clear you are not accedently override ) not required decorator provided by flutter to make code cleaner
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: defualtAppBar,
+        backgroundColor: Colors.teal,
+        body: HomePage(),
+      ),
+    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Go back!'),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+/*
+final questions = const [
     {
       'questionText':
           'كم عدد الدروس القادمة الخاصة بطريقة التفكير السليمة لأي رائد الأعمال',
@@ -83,34 +119,4 @@ class _MyAppState extends State<MyApp> {
       _totalScore = 0;
     });
   }
-
-  @override //(to make clear you are not accedently override ) not required decorator provided by flutter to make code cleaner
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: defualtAppBar,
-        backgroundColor: Colors.teal,
-        body: HomePage(),
-      ),
-    );
-  }
-}
-
-class SecondRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Second Route"),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text('Go back!'),
-        ),
-      ),
-    );
-  }
-}
+ */

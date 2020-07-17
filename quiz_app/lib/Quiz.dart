@@ -45,10 +45,10 @@ class _QuizState extends State<Quiz> {
     {
       'questionText': 'Who\'s your favorite instructor?',
       'answers': [
-        {'text': 'Max', 'score': 1},
-        {'text': 'Max', 'score': 1},
-        {'text': 'Max', 'score': 1},
-        {'text': 'Max', 'score': 1},
+        {'text': 'Eng-Abdulrahman', 'score': 1},
+        {'text': 'Eng-Abdulrahman', 'score': 1},
+        {'text': 'Eng-Abdulrahman', 'score': 1},
+        {'text': 'Eng-Abdulrahman', 'score': 1},
       ],
     },
   ];
