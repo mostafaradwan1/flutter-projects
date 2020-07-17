@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/quizcourses.dart';
+import 'Quiz.dart';
+import 'main.dart';
 
 class Result extends StatelessWidget {
   final int resultScore;
@@ -31,24 +34,34 @@ class Result extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           FlatButton(
-            child: Text(
-              'GO TO NEXT LESSON',
-            ),
-            color: Colors.black,
-            textColor: Colors.white,
-            onPressed: resetHandler,
-          ),
-          FlatButton(
             color: Colors.white,
             textColor: Colors.black,
             padding: EdgeInsets.all(8.0),
             splashColor: Colors.blueAccent,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MyApp()),
+              );
+            },
             child: Text(
-              "Back to courses",
+              "Back to Home Page",
               style: TextStyle(fontSize: 20.0),
             ),
           ),
+          RaisedButton(
+              color: Colors.black,
+              child: Text(
+                'Retake The Quiz',
+                style: TextStyle(fontSize: 22),
+              ),
+              textColor: Colors.white,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Quiz()),
+                );
+              }),
         ],
       ),
     );

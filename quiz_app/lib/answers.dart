@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
-  final List<Map<String, Object>> answers;
+  final String answer;
   final testFunc;
-  Answer(this.answers, this.testFunc);
+  Answer(this.answer, this.testFunc);
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       child: Column(
-          children: answers.map((a) {
-        return RaisedButton(
-          child: Text(a['text'].toString()),
-          onPressed: () => testFunc(a['score']),
-        );
-      }).toList()),
+        children: [
+          Container(
+            width: double.infinity,
+            child: RaisedButton(
+              color: Colors.white,
+              textColor: Colors.black,
+              child: Text(answer),
+              onPressed: testFunc,
+            ),
+          )
+        ],
+      ),
     );
   }
 }

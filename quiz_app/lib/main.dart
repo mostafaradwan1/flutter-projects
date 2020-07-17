@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/Quiz.dart';
-import 'package:quiz_app/result.dart';
+import 'appbar.dart';
+import 'splashScreen.dart';
+import 'homePage.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(new MaterialApp(
+    home: MySplashScreen(),
+  ));
+}
 
 class MyApp extends StatefulWidget {
   @override
@@ -27,9 +32,9 @@ class _MyAppState extends State<MyApp> {
       'questionText': 'تغيير طريقة التفكير هو أمر شاق، لذا يجب عليك',
       'answers': [
         {'text': 'ان تشاهد ما تشاء من الدروس طالما انك تفهم', 'score': 3},
-        {'text': 'yes', 'score': 11},
-        {'text': 'yes', 'score': 5},
-        {'text': 'yes', 'score': 9},
+        {'text': 'yes', 'score': 0},
+        {'text': 'yes', 'score': 0},
+        {'text': 'yes', 'score': 0},
       ],
     },
     {
@@ -44,9 +49,9 @@ class _MyAppState extends State<MyApp> {
       'questionText':
           'تغيير طريقة التفكير أمر شاق وإستيعاب المعلومات التي في الدروس لا يعني إطلاقا أن طريقة تفكيرك بدأت في التغيير',
       'answers': [
-        {'text': 'yes', 'score': 1},
-        {'text': 'yes', 'score': 1},
-        {'text': 'yes', 'score': 1},
+        {'text': 'yes', 'score': 0},
+        {'text': 'yes', 'score': 0},
+        {'text': 'yes', 'score': 0},
         {'text': 'yes', 'score': 1},
       ],
     },
@@ -54,9 +59,9 @@ class _MyAppState extends State<MyApp> {
       'questionText':
           'تغيير طريقة التفكير أمر شاق وإستيعاب المعلومات التي في الدروس لا يعني إطلاقا أن طريقة تفكيرك بدأت في التغيير',
       'answers': [
-        {'text': '10', 'score': 1},
-        {'text': '10', 'score': 1},
-        {'text': '10', 'score': 1},
+        {'text': '10', 'score': 0},
+        {'text': '10', 'score': 0},
+        {'text': '10', 'score': 0},
         {'text': '10', 'score': 1},
       ],
     },
@@ -82,49 +87,30 @@ class _MyAppState extends State<MyApp> {
   @override //(to make clear you are not accedently override ) not required decorator provided by flutter to make code cleaner
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: Scaffold(
-          backgroundColor: Colors.teal,
-          appBar: AppBar(
-            leading: IconButton(
-              padding: EdgeInsets.all(5.0),
-              icon: Image.asset('images/logo.png'),
-              onPressed: null,
-            ),
-            title: Text(
-              'Gammal Tech',
-              style: TextStyle(
-                fontFamily: 'Montserrat-Regular',
-                color: Colors.teal,
-              ),
-            ),
-            actions: [
-              InkWell(
-                  onTap: () {
-                    print('Click Profile Pic');
-                  },
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: Image.asset(
-                      'images/profilePic.png',
-                    ),
-                  ))
-            ],
-            backgroundColor: Colors.white,
-          ),
-          body: _questionIndex < questions.length
-              ? Column(
-                  children: [
-                    Quiz(
-                        questions: questions,
-                        answerQuestion: _answerQuestion,
-                        questionIndex: _questionIndex)
-                  ],
-                )
-              : Result(_totalScore, _resetQuiz),
+      home: Scaffold(
+        appBar: defualtAppBar,
+        backgroundColor: Colors.teal,
+        body: HomePage(),
+      ),
+    );
+  }
+}
+
+class SecondRoute extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Second Route"),
+      ),
+      body: Center(
+        child: RaisedButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: Text('Go back!'),
         ),
-        theme: ThemeData(
-          backgroundColor: Colors.teal,
-          fontFamily: 'Hind',
-        ));
+      ),
+    );
   }
 }
