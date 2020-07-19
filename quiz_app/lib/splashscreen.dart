@@ -8,7 +8,7 @@ class MySplashScreen extends StatelessWidget {
     return SplashScreen(
         seconds: 4,
         navigateAfterSeconds: MyApp(),
-        title: new Text('Welcome In SplashScreen'),
+        title: new Text('Welcome To Gammal Tech'),
         image: new Image.asset('images/logo.png'),
         backgroundColor: Colors.white,
         styleTextUnderTheLoader: new TextStyle(),

@@ -1,5 +1,5 @@
 import 'package:chewie/chewie.dart';
-import 'package:chewie/src/chewie_player.dart';
+// import 'package:chewie/src/chewie_player.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
@@ -62,7 +62,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: defualtAppBar,
+        appBar: HelperMethod.getAppar(context,false),
         body: Center(
           child: Column(
             children: <Widget>[
@@ -81,12 +81,12 @@ class _ChewieDemoState extends State<ChewieDemo> {
                       fontSize: 20,
                     ),
                   ),
-                  onPressed: (){
+                  onPressed: () {
                     Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => VideoCourseEposides()),
-                      );
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => VideoCourseEposides()),
+                    );
                   })
             ],
           ),

@@ -17,13 +17,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  
-
   @override //(to make clear you are not accedently override ) not required decorator provided by flutter to make code cleaner
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: defualtAppBar,
+        appBar: HelperMethod.getAppar(context,true),
         backgroundColor: Colors.teal,
         body: HomePage(),
       ),
@@ -49,8 +47,6 @@ class SecondRoute extends StatelessWidget {
     );
   }
 }
-
-
 
 /*
 final questions = const [

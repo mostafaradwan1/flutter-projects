@@ -9,31 +9,40 @@ class VideoCourses extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.teal,
-        appBar: defualtAppBar,
+        appBar: HelperMethod.getAppar(context, false),
         body: Container(
           width: double.infinity,
           margin: EdgeInsets.all(20),
-          child: Column(
-              children: courseTitles.map((e) {
-            return Card(
-              color: Colors.white,
-              child: Column(
-                children: <Widget>[
-                  Image.asset(
-                    'images/end_Gammal.jpg',
-                    fit: BoxFit.cover,
-                  ),
-                  RaisedButton(child: Text(e),onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => VideoCourseEposides()),
-                    );
-                  })
-                ],
-              ),
-            );
-          }).toList()),
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                Column(
+                    children: courseTitles.map((e) {
+                  return Card(
+                    color: Colors.white,
+                    child: Column(
+                      children: <Widget>[
+                        Image.asset(
+                          'images/end_Gammal.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                        RaisedButton(
+                            child: Text(e),
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        VideoCourseEposides()),
+                              );
+                            })
+                      ],
+                    ),
+                  );
+                }).toList()),
+              ],
+            ),
+          ),
         ),
       ),
     );

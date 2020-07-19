@@ -8,7 +8,7 @@ class VideoCourseEposides extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: defualtAppBar,
+        appBar:HelperMethod.getAppar(context,false),
         backgroundColor: Colors.teal,
         body: ListView.separated(
           padding: const EdgeInsets.all(20),

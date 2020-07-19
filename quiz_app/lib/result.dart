@@ -61,6 +61,10 @@ class Result extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => Quiz()),
                 );
               }),
+          Text(
+            'your score is $resultScore / 3',
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
         ],
       ),
     );

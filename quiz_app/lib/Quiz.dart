@@ -27,19 +27,19 @@ class _QuizState extends State<Quiz> {
     {
       'questionText': 'What\'s your favorite color?',
       'answers': [
-        {'text': 'Black', 'score': 10},
-        {'text': 'Red', 'score': 5},
-        {'text': 'Green', 'score': 3},
-        {'text': 'White', 'score': 1},
+        {'text': 'Black', 'score': 0},
+        {'text': 'Red', 'score': 0},
+        {'text': 'Green', 'score': 0},
+        {'text': 'White', 'score': 0},
       ],
     },
     {
       'questionText': 'What\'s your favorite animal?',
       'answers': [
-        {'text': 'Rabbit', 'score': 3},
-        {'text': 'Snake', 'score': 11},
-        {'text': 'Elephant', 'score': 5},
-        {'text': 'Lion', 'score': 9},
+        {'text': 'Rabbit', 'score': 0},
+        {'text': 'Snake', 'score': 0},
+        {'text': 'Elephant', 'score': 0},
+        {'text': 'Lion', 'score': 0},
       ],
     },
     {
@@ -68,12 +68,6 @@ class _QuizState extends State<Quiz> {
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
-    print(_questionIndex);
-    if (_questionIndex < _questions.length) {
-      print('We have more questions!');
-    } else {
-      print('No more questions!');
-    }
   }
 
   @override
@@ -81,7 +75,7 @@ class _QuizState extends State<Quiz> {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.teal,
-        appBar: defualtAppBar,
+        appBar: HelperMethod.getAppar(context,false),
         body: _questionIndex < _questions.length
             ? Column(
                 children: [
