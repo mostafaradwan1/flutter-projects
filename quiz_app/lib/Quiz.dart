@@ -62,7 +62,7 @@ class _QuizState extends State<Quiz> {
     });
   }
 
-  void _answerQuestion(int score) {
+  void _answerQuestion(int score) async {
     _totalScore += score;
 
     setState(() {
@@ -75,7 +75,7 @@ class _QuizState extends State<Quiz> {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.teal,
-        appBar: HelperMethod.getAppar(context,false),
+        appBar: HelperMethod.getAppar(context, false),
         body: _questionIndex < _questions.length
             ? Column(
                 children: [
@@ -95,22 +95,3 @@ class _QuizState extends State<Quiz> {
     );
   }
 }
-
-// class Quiz extends StatelessWidget {
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return questionIndex < questions.length
-//         ? Column(children: [
-//             Question(
-//               questions[questionIndex]['questionText'],
-//             ),
-//             ...(questions[questionIndex]['answers']
-//                     as List<Map<String, Object>>)
-//                 .map((e) {
-//               return Answer(e['text'], () => answerQuestion(e['score']));
-//             }).toList()
-//           ])
-//         : Result(totalScore, resetQuiz);
-//   }
-// }

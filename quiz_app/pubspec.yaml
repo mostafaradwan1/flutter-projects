@@ -33,6 +33,7 @@ dev_dependencies:
     sdk: flutter
   chewie : ^0.9.7
   video_player:
+  audioplayers: ^0.13.2
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -43,6 +44,7 @@ flutter:
     - images/profilePic.png
     - images/download.png
     - images/end_Gammal.jpg
+    - assets/sounds/correct.mp3
   fonts:
     - family: Montserrat-Regular     
       fonts:
