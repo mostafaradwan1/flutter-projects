@@ -45,6 +45,7 @@ flutter:
     - images/download.png
     - images/end_Gammal.jpg
     - assets/sounds/correct.mp3
+    - images/signout.png
   fonts:
     - family: Montserrat-Regular     
       fonts:

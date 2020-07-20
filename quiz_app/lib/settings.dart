@@ -64,7 +64,16 @@ class _SettingsState extends State<Settings> {
                 ),
                 new Checkbox(
                   value: false,
-                )
+                ),
+              ],
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text("Logout"),
+                IconButton(
+                    icon: Image.asset('images/signout.png'), onPressed: () {})
               ],
             ),
           ],
@@ -86,9 +95,7 @@ class Item {
 }
 
 class MyStatefulWidget extends StatefulWidget {
-  
-  
-  MyStatefulWidget( );
+  MyStatefulWidget();
 
   @override
   _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
