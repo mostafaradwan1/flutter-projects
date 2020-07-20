@@ -5,19 +5,6 @@ import 'result.dart';
 import 'appbar.dart';
 
 class Quiz extends StatefulWidget {
-  // final List<Map<String, Object>> questions;
-  // final int questionIndex;
-  // final int totalScore;
-  // final Function answerQuestion;
-  // final Function resetQuiz;
-
-  // Quiz({
-  //   @required this.questions,
-  //   @required this.answerQuestion,
-  //   @required this.questionIndex,
-  //   @required this.totalScore,
-  //   @required this.resetQuiz,
-  // });
   @override
   _QuizState createState() => _QuizState();
 }
@@ -86,7 +73,8 @@ class _QuizState extends State<Quiz> {
                           as List<Map<String, Object>>)
                       .map((answer) {
                     return Answer(
-                        answer['text'], () => _answerQuestion(answer['score']));
+                        answer: answer['text'],
+                        testFunc: () => _answerQuestion(answer['score']));
                   }).toList()
                 ],
               )

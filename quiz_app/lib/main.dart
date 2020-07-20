@@ -3,7 +3,7 @@ import 'appbar.dart';
 import 'splashScreen.dart';
 import 'homePage.dart';
 
-const dev = true;
+const dev = false;
 
 void main() {
   runApp(new MaterialApp(

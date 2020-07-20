@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'settings.dart';
 
 class HelperMethod {
   static AppBar getAppar(BuildContext context, bool isHomePage) {
@@ -25,9 +26,17 @@ class HelperMethod {
                   Icons.arrow_back,
                   color: Colors.teal,
                 ))
-            : Icon(
-                Icons.home,
-                color: Colors.teal,
+            : GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Settings()),
+                  );
+                },
+                child: Icon(
+                  Icons.settings,
+                  color: Colors.teal,
+                ),
               )
       ],
       backgroundColor: Colors.white,

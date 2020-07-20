@@ -62,7 +62,7 @@ class _ChewieDemoState extends State<ChewieDemo> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: HelperMethod.getAppar(context,false),
+        appBar: HelperMethod.getAppar(context, false),
         body: Center(
           child: Column(
             children: <Widget>[
@@ -95,13 +95,3 @@ class _ChewieDemoState extends State<ChewieDemo> {
     );
   }
 }
-//_questionIndex < questions.length
-//     ? Column(
-//         children: [
-//           Quiz(
-//               questions: questions,
-//               answerQuestion: _answerQuestion,
-//               questionIndex: _questionIndex)
-//         ],
-//       )
-//     : Result(_totalScore, _resetQuiz),

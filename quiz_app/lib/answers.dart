@@ -4,15 +4,14 @@ import 'package:audioplayers/audio_cache.dart';
 class Answer extends StatefulWidget {
   final String answer;
   final testFunc;
-  Answer(this.answer, this.testFunc);
+  final withSound;
+  Answer({this.answer, this.testFunc, this.withSound});
 
   @override
   _AnswerState createState() => _AnswerState();
 }
 
 class _AnswerState extends State<Answer> {
-  soundEffect() async {}
-
   AudioCache player;
 
   @override

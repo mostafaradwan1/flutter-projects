@@ -26,6 +26,14 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => Quiz()),
                 );
               }),
+          // RaisedButton(
+          //     child: Text('settings'),
+          //     onPressed: () {
+          //       Navigator.push(
+          //         context,
+          //         MaterialPageRoute(builder: (context) => Settings()),
+          //       );
+          //     }),
         ],
       ),
     );
