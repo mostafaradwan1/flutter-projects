@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Quiz.dart';
 import 'videoCourses.dart';
+import 'contact.dart';
 
 class HomePage extends StatelessWidget {
   HomePage();
@@ -26,14 +27,14 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => Quiz()),
                 );
               }),
-          // RaisedButton(
-          //     child: Text('settings'),
-          //     onPressed: () {
-          //       Navigator.push(
-          //         context,
-          //         MaterialPageRoute(builder: (context) => Settings()),
-          //       );
-          //     }),
+          RaisedButton(
+              child: Text('Contact'),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Contact()),
+                );
+              }),
         ],
       ),
     );
