@@ -18,8 +18,11 @@ class _SettingsState extends State<Settings> {
             withSound: withSound,
           );
         } else {
-          Answer(withSound: withSound);
+          Answer(withSound: !withSound);
         }
+      });
+  void _withLevelChanged() => setState(() {
+        withSound = !withSound;
       });
   @override
   Widget build(BuildContext context) {
@@ -48,7 +51,7 @@ class _SettingsState extends State<Settings> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Icon(Icons.language),
-                MyStatefulWidget(),
+                DropDownMenu(),
               ],
             ),
             Row(
@@ -64,6 +67,7 @@ class _SettingsState extends State<Settings> {
                 ),
                 new Checkbox(
                   value: false,
+                  onChanged:(withSound)=> _withLevelChanged,
                 ),
               ],
             ),
@@ -83,25 +87,14 @@ class _SettingsState extends State<Settings> {
   }
 }
 
-Item language = Item(
-  'Language',
-  Icon(Icons.language),
-);
-
-class Item {
-  const Item(this.name, this.icon);
-  final String name;
-  final Icon icon;
-}
-
-class MyStatefulWidget extends StatefulWidget {
-  MyStatefulWidget();
+class DropDownMenu extends StatefulWidget {
+  DropDownMenu();
 
   @override
-  _MyStatefulWidgetState createState() => _MyStatefulWidgetState();
+  _DropDownMenuState createState() => _DropDownMenuState();
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class _DropDownMenuState extends State<DropDownMenu> {
   String dropdownValue = 'Arabic';
 
   @override

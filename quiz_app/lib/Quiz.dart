@@ -59,27 +59,25 @@ class _QuizState extends State<Quiz> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.teal,
-        appBar: HelperMethod.getAppar(context, false),
-        body: _questionIndex < _questions.length
-            ? Column(
-                children: [
-                  Question(
-                    _questions[_questionIndex]['questionText'],
-                  ),
-                  ...(_questions[_questionIndex]['answers']
-                          as List<Map<String, Object>>)
-                      .map((answer) {
-                    return Answer(
-                        answer: answer['text'],
-                        testFunc: () => _answerQuestion(answer['score']));
-                  }).toList()
-                ],
-              )
-            : Result(_totalScore, _resetQuiz),
-      ),
+    return Scaffold(
+      backgroundColor: Colors.teal,
+      appBar: HelperMethod.getAppar(context, false),
+      body: _questionIndex < _questions.length
+          ? Column(
+              children: [
+                Question(
+                  _questions[_questionIndex]['questionText'],
+                ),
+                ...(_questions[_questionIndex]['answers']
+                        as List<Map<String, Object>>)
+                    .map((answer) {
+                  return Answer(
+                      answer: answer['text'],
+                      testFunc: () => _answerQuestion(answer['score']));
+                }).toList()
+              ],
+            )
+          : Result(_totalScore, _resetQuiz),
     );
   }
 }

@@ -4,7 +4,6 @@ import 'appbar.dart';
 class Contact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
     return MaterialApp(
       home: Scaffold(
         appBar: HelperMethod.getAppar(context, false),
