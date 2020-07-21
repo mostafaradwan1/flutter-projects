@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'chew.dart';
+import 'package:quiz_app/FAQ.dart';
+import 'videoPlayerExample.dart';
 
 class FAQButton extends StatelessWidget {
   final text;
@@ -13,7 +14,7 @@ class FAQButton extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => ChewieDemo()),
+            MaterialPageRoute(builder: (context) => VideoPlayerScreen()),
           );
         });
   }

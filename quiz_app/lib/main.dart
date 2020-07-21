@@ -5,8 +5,9 @@ import 'appbar.dart';
 import 'settings.dart';
 import 'contact.dart';
 import 'FAQ.dart';
+import 'MasterClass.dart';
 
-const dev = false;
+const dev = true;
 
 void main() {
   runApp(new MaterialApp(
@@ -77,7 +78,7 @@ class _MyAppState extends State<MyApp> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Contact()),
+                  MaterialPageRoute(builder: (context) => MasterClass()),
                 );
                 // ...
               },
