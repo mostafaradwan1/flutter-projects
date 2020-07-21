@@ -37,7 +37,15 @@ send us a message using the form.""",
                       ),
                       MyCustomForm(),
                       RaisedButton(
-                        child: Text('Send'),
+                        padding: EdgeInsets.all(10),
+                        color: Colors.teal,
+                        child: Text(
+                          'Send',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
+                        ),
                         onPressed: () {
                           final snackBar = SnackBar(
                             content: Text('your message was sent!'),
@@ -90,69 +98,80 @@ class MyCustomFormState extends State<MyCustomForm> {
     return Form(
         key: _formKey,
         child: Column(children: <Widget>[
-        
           // Add TextFormFields and RaisedButton here.
-          Text("data",style: TextStyle(fontSize: 22),),
-          TextFormField(
-            minLines: 1,
-            maxLines: 3,
-            decoration: InputDecoration(
-              labelText: "Message",
-              hintText: "Message us !",
-              border: OutlineInputBorder(),
+
+          Container(
+            margin: EdgeInsets.all(15),
+            child: TextFormField(
+              minLines: 1,
+              maxLines: 3,
+              decoration: InputDecoration(
+                labelText: "Message",
+                hintText: "Message us !",
+                border: OutlineInputBorder(),
+              ),
+              // The validator receives the text that the user has entered.
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
             ),
-            // The validator receives the text that the user has entered.
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
           ),
-          TextFormField(
-            maxLines: 1,
-            decoration: InputDecoration(
-              hintText: "Name",
-              labelText: "Name",
-              border: OutlineInputBorder(),
+          Container(
+            margin: EdgeInsets.all(15),
+            child: TextFormField(
+              maxLines: 1,
+              decoration: InputDecoration(
+                hintText: "Name",
+                labelText: "Name",
+                border: OutlineInputBorder(),
+              ),
+              // The validator receives the text that the user has entered.
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
             ),
-            // The validator receives the text that the user has entered.
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
           ),
-          TextFormField(
-            maxLines: 1,
-            decoration: InputDecoration(
-              hintText: "Phone",
-              labelText: "Phone",
-              border: OutlineInputBorder(),
+          Container(
+            margin: EdgeInsets.all(15),
+            child: TextFormField(
+              maxLines: 1,
+              decoration: InputDecoration(
+                hintText: "Phone",
+                labelText: "Phone",
+                border: OutlineInputBorder(),
+              ),
+              // The validator receives the text that the user has entered.
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
             ),
-            // The validator receives the text that the user has entered.
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
           ),
-          TextFormField(
-            maxLines: 1,
-            decoration: InputDecoration(
-              hintText: "email address",
-              labelText: "Email",
-              border: OutlineInputBorder(),
+          Container(
+            margin: EdgeInsets.all(15),
+            child: TextFormField(
+              maxLines: 1,
+              decoration: InputDecoration(
+                hintText: "email address",
+                labelText: "Email",
+                border: OutlineInputBorder(),
+              ),
+              // The validator receives the text that the user has entered.
+              validator: (value) {
+                if (value.isEmpty) {
+                  return 'Please enter some text';
+                }
+                return null;
+              },
             ),
-            // The validator receives the text that the user has entered.
-            validator: (value) {
-              if (value.isEmpty) {
-                return 'Please enter some text';
-              }
-              return null;
-            },
           ),
         ]));
   }
