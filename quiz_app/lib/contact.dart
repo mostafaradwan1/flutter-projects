@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'appbar.dart';
+import 'header.dart';
 
 class Contact extends StatelessWidget {
   @override
@@ -9,76 +10,55 @@ class Contact extends StatelessWidget {
       backgroundColor: Colors.teal,
       body: Builder(
         builder: (context) => SingleChildScrollView(
-          child: Container(
-            child: Column(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.all(10),
-                  margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  width: double.infinity,
-                  decoration: new BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: new BorderRadius.circular(5),
-                    boxShadow: [
-                      new BoxShadow(
-                        color: Colors.grey,
-                        offset: new Offset(3, 3),
-                        blurRadius: 5.0,
-                        //spreadRadius: 3
-                      ),
-                    ],
-                  ),
-                  child: Text(
-                    "Contact Us",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 40,
-                    ),
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.all(15),
-                  //height: 250,
-                  child: Card(
-                    color: Colors.white,
-                    child: Column(
-                      children: <Widget>[
-                        Text("""Call us or use WhatsApp at\
+          child: Column(
+            children: <Widget>[
+              Header('Contact Us'),
+              Container(
+                width: double.infinity,
+                margin: EdgeInsets.all(15),
+                //height: 250,
+                child: Card(
+                  color: Colors.white,
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        """Call us or use WhatsApp at
 +01033998844
 Email us at support@gammal.tech
 Chat with us using the chat icon
-(for signed in users)
-Text("send us a message using the form.""",
-                            textAlign: TextAlign.center,
-                            style: TextStyle(fontSize: 20)),
-                        MyCustomForm(),
-                        RaisedButton(
-                          child: Text('Send'),
-                          onPressed: () {
-                            final snackBar = SnackBar(
-                              content: Text('Yay! A SnackBar!'),
-                              action: SnackBarAction(
-                                label: 'Undo',
-                                onPressed: () {
-                                  // Some code to undo the change.
-                                },
-                              ),
-                            );
+for signed in users
+send us a message using the form.""",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          height: 2.2,
+                        ),
+                      ),
+                      MyCustomForm(),
+                      RaisedButton(
+                        child: Text('Send'),
+                        onPressed: () {
+                          final snackBar = SnackBar(
+                            content: Text('your message was sent!'),
+                            action: SnackBarAction(
+                              label: 'Undo',
+                              onPressed: () {
+                                // Some code to undo the change.
+                              },
+                            ),
+                          );
 
-                            // Find the Scaffold in the widget tree and use
-                            // it to show a SnackBar.
-                            Scaffold.of(context).showSnackBar(snackBar);
-                          },
-                        )
-                      ],
-                    ),
+                          // Find the Scaffold in the widget tree and use
+                          // it to show a SnackBar.
+                          Scaffold.of(context).showSnackBar(snackBar);
+                        },
+                      )
+                    ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ),
@@ -110,10 +90,14 @@ class MyCustomFormState extends State<MyCustomForm> {
     return Form(
         key: _formKey,
         child: Column(children: <Widget>[
+        
           // Add TextFormFields and RaisedButton here.
+          Text("data",style: TextStyle(fontSize: 22),),
           TextFormField(
+            minLines: 1,
             maxLines: 3,
             decoration: InputDecoration(
+              labelText: "Message",
               hintText: "Message us !",
               border: OutlineInputBorder(),
             ),
@@ -129,6 +113,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             maxLines: 1,
             decoration: InputDecoration(
               hintText: "Name",
+              labelText: "Name",
               border: OutlineInputBorder(),
             ),
             // The validator receives the text that the user has entered.
@@ -143,6 +128,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             maxLines: 1,
             decoration: InputDecoration(
               hintText: "Phone",
+              labelText: "Phone",
               border: OutlineInputBorder(),
             ),
             // The validator receives the text that the user has entered.
@@ -157,6 +143,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             maxLines: 1,
             decoration: InputDecoration(
               hintText: "email address",
+              labelText: "Email",
               border: OutlineInputBorder(),
             ),
             // The validator receives the text that the user has entered.

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'appbar.dart';
 import 'answers.dart';
-
+import 'header.dart';
 class Settings extends StatefulWidget {
   @override
   _SettingsState createState() => _SettingsState();
@@ -31,6 +31,7 @@ class _SettingsState extends State<Settings> {
       backgroundColor: Colors.teal,
       body: Column(
         children: <Widget>[
+          Header("Settings"),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,

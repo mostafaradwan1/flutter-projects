@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './videoCourseEposides.dart';
 import 'appbar.dart';
+import 'header.dart';
 
 class VideoCourses extends StatelessWidget {
   final List courseTitles = ['C Course', 'C++ Course', 'Python Course'];
@@ -9,13 +10,13 @@ class VideoCourses extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.teal,
       appBar: AppBar2(),
-      body: Container(
-        width: double.infinity,
-        margin: EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Column(
+      body: SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.all(20),
+                child: Column(
+          children: <Widget>[
+            Header("Our Courses"),
+            Column(
                   children: courseTitles.map((e) {
                 return Card(
                   color: Colors.white,
@@ -37,10 +38,10 @@ class VideoCourses extends StatelessWidget {
                     ],
                   ),
                 );
-              }).toList()),
-            ],
-          ),
+            }).toList()),
+          ],
         ),
+              ),
       ),
     );
   }

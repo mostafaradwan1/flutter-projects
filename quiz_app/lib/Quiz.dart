@@ -3,6 +3,7 @@ import 'Question.dart';
 import 'answers.dart';
 import 'result.dart';
 import 'appbar.dart';
+import 'header.dart';
 
 class Quiz extends StatefulWidget {
   @override
@@ -65,6 +66,7 @@ class _QuizState extends State<Quiz> {
       body: _questionIndex < _questions.length
           ? Column(
               children: [
+                Header("Quiz"),
                 Question(
                   _questions[_questionIndex]['questionText'],
                 ),

@@ -71,6 +71,36 @@ class _MyAppState extends State<MyApp> {
                 // ...
               },
             ),
+            ListTile(
+              title: Text('MasterClass', style: TextStyle(fontSize: 22)),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Contact()),
+                );
+                // ...
+              },
+            ),
+            ListTile(
+              title: Text('FAQ', style: TextStyle(fontSize: 22)),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Contact()),
+                );
+                // ...
+              },
+            ),
+            ListTile(
+              title: Text('My Account', style: TextStyle(fontSize: 22)),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => Contact()),
+                );
+                // ...
+              },
+            ),
           ],
         ),
       ),

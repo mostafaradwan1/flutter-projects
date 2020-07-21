@@ -12,7 +12,7 @@ class AppBar2 extends StatelessWidget implements PreferredSizeWidget {
               onPressed: () {},
             ),
             Text(
-              'Hi',
+              'Gammal Tech',
               style: TextStyle(color: Colors.teal),
             ),
           ],
