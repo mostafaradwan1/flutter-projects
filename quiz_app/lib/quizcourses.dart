@@ -10,7 +10,7 @@ class CoursesForInterview extends StatelessWidget {
     return MaterialApp(
         home: Scaffold(
           backgroundColor: Colors.teal,
-          appBar: HelperMethod.getAppar(context,false),
+          appBar: AppBar2(),
           body: Container(
             width: double.infinity,
             child: Column(

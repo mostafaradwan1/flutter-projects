@@ -61,7 +61,7 @@ class _QuizState extends State<Quiz> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.teal,
-      appBar: HelperMethod.getAppar(context, false),
+      appBar: AppBar2(), //AppBarr(),
       body: _questionIndex < _questions.length
           ? Column(
               children: [

@@ -60,36 +60,34 @@ class _ChewieDemoState extends State<ChewieDemo> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: HelperMethod.getAppar(context, false),
-        body: Center(
-          child: Column(
-            children: <Widget>[
-              Container(
-                width: 400,
-                height: 400,
-                child: Chewie(
-                  controller: _chewieController,
-                ),
-                margin: EdgeInsets.all(10),
+    return Scaffold(
+      appBar: AppBar2(),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Container(
+              width: 400,
+              height: 400,
+              child: Chewie(
+                controller: _chewieController,
               ),
-              RaisedButton(
-                  child: Text(
-                    'Back To Course',
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
+              margin: EdgeInsets.all(10),
+            ),
+            RaisedButton(
+                child: Text(
+                  'Back To Course',
+                  style: TextStyle(
+                    fontSize: 20,
                   ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => VideoCourseEposides()),
-                    );
-                  })
-            ],
-          ),
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => VideoCourseEposides()),
+                  );
+                })
+          ],
         ),
       ),
     );

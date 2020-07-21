@@ -4,11 +4,11 @@ import 'appbar.dart';
 class Contact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: HelperMethod.getAppar(context, false),
-        backgroundColor: Colors.teal,
-        body: SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar2(),
+      backgroundColor: Colors.teal,
+      body: Builder(
+        builder: (context) => SingleChildScrollView(
           child: Container(
             child: Column(
               children: <Widget>[
@@ -54,7 +54,25 @@ Chat with us using the chat icon
 Text("send us a message using the form.""",
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 20)),
-                        MyCustomForm()
+                        MyCustomForm(),
+                        RaisedButton(
+                          child: Text('Send'),
+                          onPressed: () {
+                            final snackBar = SnackBar(
+                              content: Text('Yay! A SnackBar!'),
+                              action: SnackBarAction(
+                                label: 'Undo',
+                                onPressed: () {
+                                  // Some code to undo the change.
+                                },
+                              ),
+                            );
+
+                            // Find the Scaffold in the widget tree and use
+                            // it to show a SnackBar.
+                            Scaffold.of(context).showSnackBar(snackBar);
+                          },
+                        )
                       ],
                     ),
                   ),

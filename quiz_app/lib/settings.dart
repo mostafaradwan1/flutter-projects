@@ -26,62 +26,60 @@ class _SettingsState extends State<Settings> {
       });
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: HelperMethod.getAppar(context, false),
-        backgroundColor: Colors.teal,
-        body: Column(
-          children: <Widget>[
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(Icons.surround_sound),
-                Text(
-                  'With Sound',
-                  style: TextStyle(
-                    fontSize: 22,
-                  ),
+    return Scaffold(
+      appBar: AppBar2(),
+      backgroundColor: Colors.teal,
+      body: Column(
+        children: <Widget>[
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(Icons.surround_sound),
+              Text(
+                'With Sound',
+                style: TextStyle(
+                  fontSize: 22,
                 ),
-                new Checkbox(value: withSound, onChanged: _withSoundChanged)
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(Icons.language),
-                DropDownMenu(),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Icon(Icons.category),
-                Text(
-                  'Level',
-                  style: TextStyle(
-                    fontSize: 22,
-                  ),
+              ),
+              new Checkbox(value: withSound, onChanged: _withSoundChanged)
+            ],
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(Icons.language),
+              DropDownMenu(),
+            ],
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Icon(Icons.category),
+              Text(
+                'Level',
+                style: TextStyle(
+                  fontSize: 22,
                 ),
-                new Checkbox(
-                  value: false,
-                  onChanged:(withSound)=> _withLevelChanged,
-                ),
-              ],
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("Logout"),
-                IconButton(
-                    icon: Image.asset('images/signout.png'), onPressed: () {})
-              ],
-            ),
-          ],
-        ),
+              ),
+              new Checkbox(
+                value: false,
+                onChanged: (withSound) => _withLevelChanged,
+              ),
+            ],
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text("Logout"),
+              IconButton(
+                  icon: Image.asset('images/signout.png'), onPressed: () {})
+            ],
+          ),
+        ],
       ),
     );
   }
