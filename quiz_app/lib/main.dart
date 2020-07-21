@@ -4,6 +4,7 @@ import 'homePage.dart';
 import 'appbar.dart';
 import 'settings.dart';
 import 'contact.dart';
+import 'FAQ.dart';
 
 const dev = false;
 
@@ -86,7 +87,9 @@ class _MyAppState extends State<MyApp> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Contact()),
+                  MaterialPageRoute(
+                    builder: (context) => FAQ(),
+                  ),
                 );
                 // ...
               },
