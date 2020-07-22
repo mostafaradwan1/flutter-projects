@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/videoPlayer.dart';
 import 'appbar.dart';
 
 class MasterClassHome extends StatelessWidget {
@@ -21,10 +22,32 @@ class MasterClassHome extends StatelessWidget {
             child: Column(
               children: <Widget>[
                 Image.asset('images/end_Gammal.jpg'),
-                Container(
-              
-                  padding: EdgeInsets.all(10),
-                  child: Text("${master[i]}",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => VideoScreen(
+                            navigateTo: MasterClassHome(),
+                            color: Colors.black,
+                            textColor: Colors.white,
+                            text: Text(
+                              "Back TO MasterClass",
+                            ),
+                            textHeader: '${master[i]}',
+                          ),
+                        ));
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      "${master[i]}",
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ),
               ],
             ),

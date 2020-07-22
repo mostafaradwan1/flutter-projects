@@ -100,6 +100,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  http:
+    dependency: transitive
+    description:
+      name: http
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.12.2"
+  http_parser:
+    dependency: transitive
+    description:
+      name: http_parser
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.4"
   image:
     dependency: transitive
     description:
@@ -170,6 +184,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.2"
+  pedantic:
+    dependency: transitive
+    description:
+      name: pedantic
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.9.0"
   petitparser:
     dependency: transitive
     description:
@@ -281,7 +302,7 @@ packages:
     source: hosted
     version: "2.0.8"
   video_player:
-    dependency: "direct dev"
+    dependency: transitive
     description:
       name: video_player
       url: "https://pub.dartlang.org"
@@ -301,6 +322,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.3+2"
+  vimeoplayer:
+    dependency: "direct dev"
+    description:
+      name: vimeoplayer
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.1.2"
   wakelock:
     dependency: transitive
     description:

@@ -6,6 +6,7 @@ import 'settings.dart';
 import 'contact.dart';
 import 'FAQ.dart';
 import 'MasterClass.dart';
+import 'MyAccount.dart';
 
 const dev = true;
 
@@ -100,7 +101,7 @@ class _MyAppState extends State<MyApp> {
               onTap: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Contact()),
+                  MaterialPageRoute(builder: (context) => MyAccount()),
                 );
                 // ...
               },

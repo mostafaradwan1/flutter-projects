@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'appbar.dart';
-import './chew.dart';
+import 'videoPlayer.dart';
 
 class VideoCourseEposides extends StatelessWidget {
   final List eposides = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -27,7 +27,17 @@ class VideoCourseEposides extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => ChewieDemo()),
+                      MaterialPageRoute(
+                        builder: (context) => VideoScreen(
+                          navigateTo: VideoCourseEposides(),
+                          color: Colors.black,
+                          textColor: Colors.white,
+                          text: Text(
+                            "Back TO the course",
+                          ),
+                          textHeader: 'eposide ${eposides[index]}',
+                        ),
+                      ),
                     );
                   }),
             ),

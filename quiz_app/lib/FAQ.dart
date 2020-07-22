@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'header.dart';
 import 'appbar.dart';
-import 'faqButtons.dart';
+import 'Button.dart';
+import 'videoPlayer.dart';
 
 class FAQ extends StatelessWidget {
   final _faquestions = [
@@ -20,12 +21,20 @@ class FAQ extends StatelessWidget {
           Header('FAQ'),
           Column(
             children: _faquestions.map(
-              (e) {
-                return FAQButton(
-                  Text(
-                    e,
-                    style: TextStyle(fontSize: 20),
+              (text) {
+                return Button(
+                  text: Text(text),
+                  navigateTo: VideoScreen(
+                    navigateTo: FAQ(),
+                    color: Colors.black,
+                    textColor: Colors.white,
+                    text: Text(
+                      "Back TO FAQ",
+                    ),
+                    textHeader: text,
                   ),
+                  color: Colors.white,
+                  textColor: Colors.black,
                 );
               },
             ).toList(),
