@@ -27,6 +27,7 @@ class _MyAppState extends State<MyApp> {
   @override //(to make clear you are not accedently override ) not required decorator provided by flutter to make code cleaner
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
       appBar: AppBar2(),
       //AppBarr(),
       drawer: Drawer(
