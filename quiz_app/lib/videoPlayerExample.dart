@@ -1,21 +1,24 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'appbar.dart';
-import 'faqButtons.dart';
 
 class VideoPlayerScreen extends StatefulWidget {
-  VideoPlayerScreen({Key key}) : super(key: key);
+  final text;
+  final navigateTo;
+  VideoPlayerScreen(this.navigateTo, this.text);
 
   @override
-  _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
+  _VideoPlayerScreenState createState() =>
+      _VideoPlayerScreenState(navigateTo, text);
 }
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
+  final text;
+  final navigateTo;
   VideoPlayerController _controller;
   Future<void> _initializeVideoPlayerFuture;
-
+  _VideoPlayerScreenState(this.navigateTo, this.text);
   @override
   void initState() {
     // Create and store the VideoPlayerController. The VideoPlayerController
@@ -91,9 +94,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
               ),
             ),
             RaisedButton(
-                child: Text('Back To FAQ'),
+                child: Text(text),
                 onPressed: () {
-                  Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => navigateTo),
+                  );
                 }), // This trailing comma makes auto-formatting nicer for build methods.
           ],
         ),

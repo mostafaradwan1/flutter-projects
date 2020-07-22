@@ -4,7 +4,7 @@ import 'appbar.dart';
 import 'faqButtons.dart';
 
 class FAQ extends StatelessWidget {
-  final _FAQuestions = [
+  final _faquestions = [
     'ما هي البرمجه؟',
     'من أين أبدأ تعلم البرمجه',
     'كيف تم نطوير منهج البرمجه علي موقعنا',
@@ -19,7 +19,7 @@ class FAQ extends StatelessWidget {
         children: <Widget>[
           Header('FAQ'),
           Column(
-            children: _FAQuestions.map(
+            children: _faquestions.map(
               (e) {
                 return FAQButton(
                   Text(

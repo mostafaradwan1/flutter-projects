@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/FAQ.dart';
 import 'videoPlayerExample.dart';
+import 'FAQ.dart';
 
 class FAQButton extends StatelessWidget {
   final text;
@@ -14,7 +14,8 @@ class FAQButton extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => VideoPlayerScreen()),
+            MaterialPageRoute(
+                builder: (context) => VideoPlayerScreen(FAQ(), "Back To FAQ")),
           );
         });
   }
