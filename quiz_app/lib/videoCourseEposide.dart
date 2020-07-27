@@ -7,36 +7,77 @@ import 'button.dart';
 import 'header.dart';
 import 'result.dart';
 
-class VideoCourseEposide extends StatelessWidget {
+class VideoCourseEposide extends StatefulWidget {
   @required
-  final textHeader;
+  var textHeader;
   @required
-  final text;
+  var text;
   @required
-  final navigateTo;
+  var navigateTo;
   @required
-  final color;
+  var color;
   @required
-  final textColor;
-  @required
-  final questions;
-  @required
-  final questionIndex;
-  @required
-  final answerQuestion;
-  final totalScore;
-  final resetQuiz;
+  var textColor;
   VideoCourseEposide(
-      {this.questionIndex,
-      this.questions,
-      this.answerQuestion,
-      this.text,
+      {this.text,
       this.navigateTo,
       this.color,
       this.textColor,
-      this.textHeader,
-      this.totalScore,
-      this.resetQuiz});
+      this.textHeader});
+
+  @override
+  _VideoCourseEposideState createState() => _VideoCourseEposideState();
+}
+
+class _VideoCourseEposideState extends State<VideoCourseEposide> {
+  final questions = const [
+    {
+      'questionText': 'What\'s your favorite color?',
+      'answers': [
+        {'text': 'Black', 'score': 0},
+        {'text': 'Red', 'score': 0},
+        {'text': 'Green', 'score': 0},
+        {'text': 'White', 'score': 0},
+      ],
+    },
+    {
+      'questionText': 'What\'s your favorite animal?',
+      'answers': [
+        {'text': 'Rabbit', 'score': 0},
+        {'text': 'Snake', 'score': 0},
+        {'text': 'Elephant', 'score': 0},
+        {'text': 'Lion', 'score': 0},
+      ],
+    },
+    {
+      'questionText': 'Who\'s your favorite instructor?',
+      'answers': [
+        {'text': 'Eng-Abdulrahman', 'score': 1},
+        {'text': 'Eng-Abdulrahman', 'score': 1},
+        {'text': 'Eng-Abdulrahman', 'score': 1},
+        {'text': 'Eng-Abdulrahman', 'score': 1},
+      ],
+    },
+  ];
+
+  var _totalScore = 0;
+  var questionIndex = 0;
+
+  void _resetQuiz() {
+    setState(() {
+      questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
+  void _answerQuestion(int score) async {
+    _totalScore += score;
+
+    setState(() {
+      questionIndex = questionIndex + 1;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,13 +92,13 @@ class VideoCourseEposide extends StatelessWidget {
                 preferredSize: Size(0.0, 0.0),
               ),
         body: ListView(children: <Widget>[
-          Header(textHeader),
+          Header(widget.textHeader),
           VimeoPlayer(id: '395212534'),
           Button(
             color: Colors.white,
             textColor: Colors.black,
-            navigateTo: navigateTo,
-            text: text,
+            navigateTo: widget.navigateTo,
+            text: widget.text,
           ),
           questionIndex < questions.length
               ? Column(
@@ -70,11 +111,15 @@ class VideoCourseEposide extends StatelessWidget {
                         .map((answer) {
                       return Answer(
                           answer: answer['text'],
-                          testFunc: () => answerQuestion(answer['score']));
+                          testFunc: () {
+                            setState(() {
+                              _answerQuestion(answer['score']);
+                            });
+                          });
                     }).toList()
                   ],
                 )
-              : Result(totalScore, resetQuiz),
+              : Result(_totalScore, _resetQuiz),
         ]));
   }
 }

@@ -9,52 +9,6 @@ class VideoCourseEposides extends StatefulWidget {
 
 class _VideoCourseEposidesState extends State<VideoCourseEposides> {
   final List eposides = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  final _questions = const [
-    {
-      'questionText': 'What\'s your favorite color?',
-      'answers': [
-        {'text': 'Black', 'score': 0},
-        {'text': 'Red', 'score': 0},
-        {'text': 'Green', 'score': 0},
-        {'text': 'White', 'score': 0},
-      ],
-    },
-    {
-      'questionText': 'What\'s your favorite animal?',
-      'answers': [
-        {'text': 'Rabbit', 'score': 0},
-        {'text': 'Snake', 'score': 0},
-        {'text': 'Elephant', 'score': 0},
-        {'text': 'Lion', 'score': 0},
-      ],
-    },
-    {
-      'questionText': 'Who\'s your favorite instructor?',
-      'answers': [
-        {'text': 'Eng-Abdulrahman', 'score': 1},
-        {'text': 'Eng-Abdulrahman', 'score': 1},
-        {'text': 'Eng-Abdulrahman', 'score': 1},
-        {'text': 'Eng-Abdulrahman', 'score': 1},
-      ],
-    },
-  ];
-  var _questionIndex = 0;
-  var _totalScore = 0;
-
-  void _resetQuiz() {
-    setState(() {
-      _questionIndex = 0;
-      _totalScore = 0;
-    });
-  }
-
-  void _answerQuestion(int score) async {
-    _totalScore += score;
-
-    setState(() {
-      _questionIndex = _questionIndex + 1;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,11 +42,6 @@ class _VideoCourseEposidesState extends State<VideoCourseEposides> {
                             "Back TO the course",
                           ),
                           textHeader: 'eposide ${eposides[index]}',
-                          answerQuestion: _answerQuestion,
-                          questionIndex: _questionIndex,
-                          questions: _questions,
-                          resetQuiz: _resetQuiz,
-                          totalScore: _totalScore,
                         ),
                       ),
                     );
