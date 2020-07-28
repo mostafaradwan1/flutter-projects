@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>534358493621-ck8goseotbv158hssolr5cleu6iiib4b.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.534358493621-ck8goseotbv158hssolr5cleu6iiib4b</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBJ0apWPDsObxjkI6TvRVvthNbBA6wjGMo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>534358493621</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Radwan</string>
+	<key>PROJECT_ID</key>
+	<string>login-53175</string>
+	<key>STORAGE_BUCKET</key>
+	<string>login-53175.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:534358493621:ios:6a3ca3f20e1a71d337f1fc</string>
+	<key>DATABASE_URL</key>
+	<string>https://login-53175.firebaseio.com</string>
+</dict>
+</plist>

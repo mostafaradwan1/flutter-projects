@@ -7,12 +7,27 @@ import 'contact.dart';
 import 'FAQ.dart';
 import 'MasterClass.dart';
 import 'MyAccount.dart';
+import 'login.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 const dev = true;
 
 void main() {
   runApp(new MaterialApp(
-    home: dev ? MyApp() : MySplashScreen(),
+    supportedLocales: [
+      Locale('en'),
+      Locale('it'),
+      Locale('fr'),
+      Locale('es'),
+      Locale('de'),
+      Locale('pt'),
+    ],
+    localizationsDelegates: [
+      // CountryLocalizations.delegate,
+      GlobalMaterialLocalizations.delegate,
+      GlobalWidgetsLocalizations.delegate,
+    ],
+    home: dev ? Login() : MySplashScreen(),
   ));
 }
 

@@ -31,9 +31,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   chewie : ^0.9.7
   audioplayers: ^0.13.2
   vimeoplayer: ^0.1.2
+  country_code_picker: ^1.4.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
