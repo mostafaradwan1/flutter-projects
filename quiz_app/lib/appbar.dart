@@ -4,6 +4,7 @@ class AppBar2 extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+        // automaticallyImplyLeading: false,
         iconTheme: new IconThemeData(color: Colors.teal),
         title: Row(
           children: <Widget>[

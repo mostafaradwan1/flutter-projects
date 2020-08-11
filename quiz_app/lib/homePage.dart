@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_drawer.dart';
 import 'spring_buttons.dart';
 import 'Quiz.dart';
 import 'videoCourses.dart';
@@ -9,6 +10,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.teal,
+       drawer: AppDrawer(),
       appBar: AppBar2(),
       body: Container(
           width: double.infinity,

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'Quiz.dart';
 import 'main.dart';
 
 class Result extends StatelessWidget {
@@ -10,7 +9,7 @@ class Result extends StatelessWidget {
 
   String get resultPhrase {
     String resultText;
-    if (resultScore < 5) {
+    if (resultScore < 3) {
       resultText = 'check your answers';
     } else {
       resultText = 'awesome';
@@ -56,10 +55,11 @@ class Result extends StatelessWidget {
               ),
               textColor: Colors.white,
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Quiz()),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(builder: (context) => Quiz()),
+                // );
+                resetHandler();
               }),
           Text(
             'your score is $resultScore / 3',

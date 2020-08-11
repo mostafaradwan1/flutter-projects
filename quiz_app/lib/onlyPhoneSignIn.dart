@@ -132,7 +132,7 @@ class PhoneSignInSectionState extends State<PhoneSignInSection> {
         timeout: const Duration(seconds: 5),
         verificationCompleted: verificationCompleted,
         verificationFailed: verificationFailed,
-        // codeSent: codeSent,
+        //  codeSent: codeSent,
         codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
   }
 

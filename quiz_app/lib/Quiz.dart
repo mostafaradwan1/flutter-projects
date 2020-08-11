@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:quiz_app/providers/questionsProvider.dart';
+
 import 'Question.dart';
 import 'answers.dart';
 import 'result.dart';
@@ -11,75 +14,32 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  final _questions = const [
-    {
-      'questionText': 'What\'s your favorite color?',
-      'answers': [
-        {'text': 'Black', 'score': 0},
-        {'text': 'Red', 'score': 0},
-        {'text': 'Green', 'score': 0},
-        {'text': 'White', 'score': 0},
-      ],
-    },
-    {
-      'questionText': 'What\'s your favorite animal?',
-      'answers': [
-        {'text': 'Rabbit', 'score': 0},
-        {'text': 'Snake', 'score': 0},
-        {'text': 'Elephant', 'score': 0},
-        {'text': 'Lion', 'score': 0},
-      ],
-    },
-    {
-      'questionText': 'Who\'s your favorite instructor?',
-      'answers': [
-        {'text': 'Eng-Abdulrahman', 'score': 1},
-        {'text': 'Eng-Abdulrahman', 'score': 1},
-        {'text': 'Eng-Abdulrahman', 'score': 1},
-        {'text': 'Eng-Abdulrahman', 'score': 1},
-      ],
-    },
-  ];
-  var _questionIndex = 0;
-  var _totalScore = 0;
-
-  void _resetQuiz() {
-    setState(() {
-      _questionIndex = 0;
-      _totalScore = 0;
-    });
-  }
-
-  void _answerQuestion(int score) async {
-    _totalScore += score;
-
-    setState(() {
-      _questionIndex = _questionIndex + 1;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
+    final quizData = Provider.of<QuizProvider>(context);
     return Scaffold(
       backgroundColor: Colors.teal,
       appBar: AppBar2(), //AppBarr(),
-      body: _questionIndex < _questions.length
+      body: quizData.questionIndex < quizData.questions.length
           ? Column(
               children: [
                 Header("Quiz"),
                 Question(
-                  _questions[_questionIndex]['questionText'],
+                  quizData.questions[quizData.questionIndex]['questionText'],
                 ),
-                ...(_questions[_questionIndex]['answers']
+                ...(quizData.questions[quizData.questionIndex]['answers']
                         as List<Map<String, Object>>)
                     .map((answer) {
                   return Answer(
                       answer: answer['text'],
-                      testFunc: () => _answerQuestion(answer['score']));
+                      testFunc: () => quizData.answerQuestion(answer['score']));
                 }).toList()
               ],
             )
-          : Result(_totalScore, _resetQuiz),
+          : ChangeNotifierProvider(
+              create: (context) => QuizProvider(),
+              child: Result(quizData.totalScore, quizData.resetQuiz)),
     );
   }
 }
