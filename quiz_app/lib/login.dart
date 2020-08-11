@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import 'header.dart';
 import 'package:country_code_picker/country_code_picker.dart';
-import 'homePage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class Login extends StatelessWidget {
+final FirebaseAuth _auth = FirebaseAuth.instance;
+
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _smsController = TextEditingController();
+
+  String _message = '';
+  String _verificationId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +85,9 @@ class Login extends StatelessWidget {
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      _verifyPhoneNumber();
+                    },
                     color: Colors.teal,
                     padding: EdgeInsets.all(10),
                   ),
@@ -85,6 +99,14 @@ class Login extends StatelessWidget {
                       style: TextStyle(color: Colors.grey[700]),
                     ),
                   ),
+                  Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      _message,
+                      style: TextStyle(color: Colors.red),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -92,5 +114,66 @@ class Login extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _verifyPhoneNumber() async {
+    setState(() {
+      _message = '';
+    });
+    final PhoneVerificationCompleted verificationCompleted =
+        (AuthCredential phoneAuthCredential) {
+      _auth.signInWithCredential(phoneAuthCredential);
+      setState(() {
+        _message = 'Received phone auth credential: $phoneAuthCredential';
+      });
+    };
+
+    final PhoneVerificationFailed verificationFailed =
+        (AuthException authException) {
+      setState(() {
+        _message =
+            'Phone number verification failed. Code: ${authException.code}. Message: ${authException.message}';
+      });
+    };
+
+    final PhoneCodeSent codeSent =
+        (String verificationId, [int forceResendingToken]) async {
+      // widget._scaffold.showSnackBar(const SnackBar(
+      //   content: Text('Please check your phone for the verification code.'),
+      // ));
+      _verificationId = verificationId;
+    };
+
+    final PhoneCodeAutoRetrievalTimeout codeAutoRetrievalTimeout =
+        (String verificationId) {
+      _verificationId = verificationId;
+    };
+
+    await _auth.verifyPhoneNumber(
+        phoneNumber: _phoneNumberController.text,
+        timeout: const Duration(seconds: 5),
+        verificationCompleted: verificationCompleted,
+        verificationFailed: verificationFailed,
+        codeSent: codeSent,
+        codeAutoRetrievalTimeout: codeAutoRetrievalTimeout);
+  }
+
+  // Example code of how to sign in with phone.
+  void _signInWithPhoneNumber() async {
+    final AuthCredential credential = PhoneAuthProvider.getCredential(
+      verificationId: _verificationId,
+      smsCode: _smsController.text,
+    );
+    final FirebaseUser user =
+        (await _auth.signInWithCredential(credential)).user;
+    final FirebaseUser currentUser = await _auth.currentUser();
+    assert(user.uid == currentUser.uid);
+    setState(() {
+      if (user != null) {
+        _message = 'Successfully signed in, uid: ' + user.uid;
+      } else {
+        _message = 'Sign in failed';
+      }
+    });
   }
 }

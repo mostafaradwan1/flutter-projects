@@ -9,15 +9,15 @@ import 'result.dart';
 
 class VideoCourseEposide extends StatefulWidget {
   @required
-  var textHeader;
+  final textHeader;
   @required
-  var text;
+  final text;
   @required
-  var navigateTo;
+  final navigateTo;
   @required
-  var color;
+  final color;
   @required
-  var textColor;
+  final textColor;
   VideoCourseEposide(
       {this.text,
       this.navigateTo,

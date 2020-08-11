@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/signIn2.dart';
+import 'login.dart';
 import 'splashScreen.dart';
 import 'homePage.dart';
 import 'appbar.dart';
@@ -7,7 +9,7 @@ import 'contact.dart';
 import 'FAQ.dart';
 import 'MasterClass.dart';
 import 'MyAccount.dart';
-import 'login.dart';
+import 'onlyPhoneSignIn.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 const dev = true;
@@ -27,7 +29,7 @@ void main() {
       GlobalMaterialLocalizations.delegate,
       GlobalWidgetsLocalizations.delegate,
     ],
-    home: dev ? Login() : MySplashScreen(),
+    home: dev ? MyApp() : MySplashScreen(),
   ));
 }
 
@@ -42,9 +44,6 @@ class _MyAppState extends State<MyApp> {
   @override //(to make clear you are not accedently override ) not required decorator provided by flutter to make code cleaner
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniStartTop,
-      appBar: AppBar2(),
-      //AppBarr(),
       drawer: Drawer(
         child: ListView(
           // Important: Remove any padding from the ListView.
@@ -126,7 +125,7 @@ class _MyAppState extends State<MyApp> {
         ),
       ),
       backgroundColor: Colors.teal,
-      body: HomePage(),
+      body: PhoneSignInSection(),
     );
   }
 }
