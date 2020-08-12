@@ -4,6 +4,8 @@ import 'appbar.dart';
 import 'header.dart';
 
 class VideoCourses extends StatelessWidget {
+  static var routeName = '/courses';
+
   final List courseTitles = ['C Course', 'C++ Course', 'Python Course'];
   @override
   Widget build(BuildContext context) {

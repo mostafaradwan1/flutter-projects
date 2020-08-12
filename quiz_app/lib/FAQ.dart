@@ -12,6 +12,7 @@ class FAQ extends StatelessWidget {
     'خارطه الطريق لتعليم البرمجه و مجالات العمل',
     'ما هو الافضل برمجه الويب ام الموبايل '
   ];
+  static var routeName = '/faq';
   @override
   Widget build(BuildContext context) {
     return Scaffold(

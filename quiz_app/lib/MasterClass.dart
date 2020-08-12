@@ -4,6 +4,8 @@ import 'MasterCLassHome.dart';
 import 'videoPlayer.dart';
 
 class MasterClass extends StatelessWidget {
+  static var routeName = '/masterclass';
+
   @override
   Widget build(BuildContext context) {
     return VideoScreen(

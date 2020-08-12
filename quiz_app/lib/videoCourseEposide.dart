@@ -11,6 +11,8 @@ import 'header.dart';
 import 'result.dart';
 
 class VideoCourseEposide extends StatefulWidget {
+  static var routeName = '/eposide';
+
   @required
   final textHeader;
   @required

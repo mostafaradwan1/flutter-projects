@@ -3,6 +3,8 @@ import 'appbar.dart';
 import 'header.dart';
 
 class Contact extends StatelessWidget {
+  static var routeName = '/contact';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

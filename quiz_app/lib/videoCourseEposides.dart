@@ -3,6 +3,7 @@ import 'appbar.dart';
 import 'videoCourseEposide.dart';
 
 class VideoCourseEposides extends StatefulWidget {
+  static var routeName = '/course-eposides';
   @override
   _VideoCourseEposidesState createState() => _VideoCourseEposidesState();
 }

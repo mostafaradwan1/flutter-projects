@@ -3,6 +3,8 @@ import 'appbar.dart';
 import 'answers.dart';
 import 'header.dart';
 class Settings extends StatefulWidget {
+  static var routeName = '/settings';
+
   @override
   _SettingsState createState() => _SettingsState();
 }

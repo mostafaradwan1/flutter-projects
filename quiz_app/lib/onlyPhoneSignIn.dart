@@ -6,6 +6,8 @@ import 'header.dart';
 final FirebaseAuth _auth = FirebaseAuth.instance;
 
 class PhoneSignInSection extends StatefulWidget {
+
+  static var routeName = '/login';
   PhoneSignInSection();
 
   @override

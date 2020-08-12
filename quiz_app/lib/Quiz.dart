@@ -9,6 +9,8 @@ import 'appbar.dart';
 import 'header.dart';
 
 class Quiz extends StatefulWidget {
+  static var routeName = '/quiz';
+
   @override
   _QuizState createState() => _QuizState();
 }

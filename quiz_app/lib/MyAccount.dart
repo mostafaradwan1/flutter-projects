@@ -3,6 +3,8 @@ import 'appbar.dart';
 import 'header.dart';
 
 class MyAccount extends StatelessWidget {
+  static var routeName = '/myaccount';
+
   final accountDetails = [
     "Name",
     "Email",

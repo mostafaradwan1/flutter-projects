@@ -3,6 +3,8 @@ import 'package:quiz_app/videoPlayer.dart';
 import 'appbar.dart';
 
 class MasterClassHome extends StatelessWidget {
+  static var routeName = '/masterclass-home';
+
   final master = [
     'The Four Golden Rules',
     'Be A Legend',
