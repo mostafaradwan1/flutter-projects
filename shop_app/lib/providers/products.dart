@@ -1,8 +1,13 @@
+import 'dart:convert';
+import 'dart:ffi';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import './product.dart';
 
 class Products with ChangeNotifier {
+  static const url = 'https://quiz-app-f98f1.firebaseio.com/products.json';
+  var data = http.get(url);
   List<Product> _items = [
     Product(
       id: 'p1',
@@ -64,16 +69,31 @@ class Products with ChangeNotifier {
   //   notifyListeners();
   // }
 
-  void addProduct(Product product) {
-    var newProduct = Product(
-      id: DateTime.now().toString(),
-      title: product.title,
-      description: product.description,
-      price: product.price,
-      imageUrl: product.imageUrl,
-    );
-    _items.insert(0, newProduct);
-    notifyListeners();
+  Future<void> addProduct(Product product) async {
+    const url = 'https://quiz-app-f98f1.firebaseio.com/products.json';
+    try {
+      final response = await http.post(
+        url,
+        body: json.encode({
+          'title': product.title,
+          'description': product.description,
+          'price': product.price,
+          'imageUrl': product.imageUrl,
+          'isFavourite': product.isFavorite
+        }),
+      );
+      final newProduct = Product(
+        id: json.decode(response.body)['name'],
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl,
+      );
+      _items.insert(0, newProduct);
+      notifyListeners();
+    } catch (e) {
+      throw e;
+    }
   }
 
   void updateProduct(id, editedProduct) {
@@ -89,6 +109,14 @@ class Products with ChangeNotifier {
   void deleteProduct(String id) {
     _items.removeWhere((prod) => prod.id == id);
     notifyListeners();
+  }
 
+  Future<Void> fetchAndSetProducts() async {
+    const url = 'https://quiz-app-f98f1.firebaseio.com/products.json';
+    try {
+      final response = await http.get(url);
+    } catch (e) {
+      throw e;
+    }
   }
 }
