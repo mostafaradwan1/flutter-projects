@@ -5,10 +5,13 @@ import 'package:quiz_app/providers/questionsProvider.dart';
 import 'answers.dart';
 import 'Question.dart';
 import 'package:vimeoplayer/vimeoplayer.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'appbar.dart';
 import 'button.dart';
 import 'header.dart';
 import 'result.dart';
+
+var db = FirebaseFirestore.instance;
 
 class VideoCourseEposide extends StatefulWidget {
   static var routeName = '/eposide';
@@ -35,8 +38,28 @@ class VideoCourseEposide extends StatefulWidget {
 }
 
 class _VideoCourseEposideState extends State<VideoCourseEposide> {
- 
   @override
+  var count = 0;
+  var questionsAndANswers;
+  var lessonsQuestions = [];
+  var cLessons = db.collection('courses').doc('C Course').collection('Lessons');
+  getCCourse() async {
+    cLessons.doc(widget.textHeader).get().then((snap) {
+      setState(() {
+        questionsAndANswers = snap.data()['questions'];
+        count = snap.data()['questionsCount'];
+        // use set state
+        print(lessonsQuestions);
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    getCCourse();
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     final quizData = Provider.of<QuizProvider>(context);
     return Scaffold(
@@ -59,27 +82,26 @@ class _VideoCourseEposideState extends State<VideoCourseEposide> {
             navigateTo: widget.navigateTo,
             text: widget.text,
           ),
-          quizData.questionIndex < quizData.questions.length
+          quizData.questionIndex < count
               ? Column(
                   children: [
+                    Header("Quiz"),
                     Question(
-                      quizData.questions[quizData.questionIndex]
+                      questionsAndANswers[quizData.questionIndex]
                           ['questionText'],
                     ),
-                    ...(quizData.questions[quizData.questionIndex]['answers']
-                            as List<Map<String, Object>>)
+                    ...(questionsAndANswers[quizData.questionIndex]['answers']
+                            as List)
                         .map((answer) {
                       return Answer(
-                          answer: answer['text'],
-                          testFunc: () {
-                            setState(() {
-                              quizData.answerQuestion(answer['score']);
-                            });
-                          });
+                          answer: answer,
+                          testFunc: () => quizData.answerQuestion(0));
                     }).toList()
                   ],
                 )
-              : Result(quizData.totalScore, quizData.resetQuiz),
+              : ChangeNotifierProvider(
+                  create: (context) => QuizProvider(),
+                  child: Result(quizData.totalScore, quizData.resetQuiz)),
         ]));
   }
 }

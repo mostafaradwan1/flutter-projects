@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/homePage.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import './providers/questionsProvider.dart';
@@ -17,7 +18,10 @@ import 'videoCourses.dart';
 
 const dev = true;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
@@ -38,13 +42,12 @@ void main() {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      home: MyApp(),
       initialRoute: HomePage.routeName,
       routes: {
         HomePage.routeName: (ctx) => HomePage(),
         Contact.routeName: (ctx) => Contact(),
         FAQ.routeName: (ctx) => FAQ(),
-        PhoneSignInSection.routeName: (ctx) => PhoneSignInSection(),
+        // PhoneSignInSection.routeName: (ctx) => PhoneSignInSection(),
         MasterClass.routeName: (ctx) => MasterClass(),
         MasterClassHome.routeName: (ctx) => MasterClassHome(),
         MyAccount.routeName: (ctx) => MyAccount(),
@@ -58,8 +61,6 @@ void main() {
   ));
 }
 
-
-
 class MyApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -68,12 +69,26 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override //(to make clear you are not accedently override ) not required decorator provided by flutter to make code cleaner
   Widget build(BuildContext context) {
-    return Scaffold(
-      // drawer: AppDrawer(),
-      backgroundColor: Colors.teal,
-      body: HomePage(),
+    return FutureBuilder(
+      // Initialize FlutterFire:
+      future: _initialization,
+      builder: (context, snapshot) {
+        // Check for errors
+        if (snapshot.hasError) {
+          return HomePage();
+        }
+
+        // Once complete, show your application
+        if (snapshot.connectionState == ConnectionState.done) {
+          return HomePage();
+        }
+
+        // Otherwise, show something whilst waiting for initialization to complete
+        return HomePage();
+      },
     );
   }
 }
