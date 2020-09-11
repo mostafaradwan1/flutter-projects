@@ -60,7 +60,7 @@ class _VideoCoursesState extends State<VideoCourses> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => VideoCourseEposides(
-                                        e: id,
+                                        id: id,
                                       )),
                             );
                           })

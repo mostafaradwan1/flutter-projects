@@ -7,12 +7,13 @@ import 'appbar.dart';
 
 class HomePage extends StatelessWidget {
   static var routeName = '/';
-
+  var user;
+  HomePage({this.user});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.teal,
-       drawer: AppDrawer(),
+      drawer: AppDrawer(),
       appBar: AppBar2(),
       body: Container(
           width: double.infinity,

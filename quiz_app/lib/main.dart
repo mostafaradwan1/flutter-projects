@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/homePage.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz_app/loading.dart';
 import './providers/questionsProvider.dart';
 import 'FAQ.dart';
 import 'MasterCLassHome.dart';
@@ -10,18 +12,19 @@ import 'MasterClass.dart';
 import 'MyAccount.dart';
 import 'Quiz.dart';
 import 'contact.dart';
-import 'onlyPhoneSignIn.dart';
 import 'settings.dart';
+import 'login.dart';
 import 'videoCourseEposide.dart';
 import 'videoCourseEposides.dart';
 import 'videoCourses.dart';
+import 'error.dart';
 
 const dev = true;
+var firebase = FirebaseAuth.instance;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(
@@ -42,12 +45,12 @@ void main() async {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      initialRoute: HomePage.routeName,
+      initialRoute: Login.login,
       routes: {
         HomePage.routeName: (ctx) => HomePage(),
         Contact.routeName: (ctx) => Contact(),
         FAQ.routeName: (ctx) => FAQ(),
-        // PhoneSignInSection.routeName: (ctx) => PhoneSignInSection(),
+        Login.login: (ctx) => Login(),
         MasterClass.routeName: (ctx) => MasterClass(),
         MasterClassHome.routeName: (ctx) => MasterClassHome(),
         MyAccount.routeName: (ctx) => MyAccount(),
@@ -78,7 +81,7 @@ class _MyAppState extends State<MyApp> {
       builder: (context, snapshot) {
         // Check for errors
         if (snapshot.hasError) {
-          return HomePage();
+          return Error();
         }
 
         // Once complete, show your application
@@ -87,7 +90,7 @@ class _MyAppState extends State<MyApp> {
         }
 
         // Otherwise, show something whilst waiting for initialization to complete
-        return HomePage();
+        return Loading();
       },
     );
   }

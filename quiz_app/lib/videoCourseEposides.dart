@@ -7,8 +7,8 @@ import 'appbar.dart';
 import 'videoCourseEposide.dart';
 
 class VideoCourseEposides extends StatefulWidget {
-  final String e;
-  VideoCourseEposides({this.e});
+  final String id;
+  VideoCourseEposides({this.id});
   static var routeName = '/course-eposides';
   @override
   _VideoCourseEposidesState createState() => _VideoCourseEposidesState();
@@ -21,7 +21,7 @@ class _VideoCourseEposidesState extends State<VideoCourseEposides> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: courses.doc(widget.e).get(),
+      future: courses.doc(widget.id).get(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Error();
@@ -60,6 +60,7 @@ class _VideoCourseEposidesState extends State<VideoCourseEposides> {
                                   "Back TO the course",
                                 ),
                                 textHeader: 'Lesson ${index + 1}',
+                                courseId: widget.id,
                               ),
                             ),
                           );

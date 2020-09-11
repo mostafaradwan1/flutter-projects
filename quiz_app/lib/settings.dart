@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quiz_app/login.dart';
 import 'appbar.dart';
 import 'answers.dart';
 import 'header.dart';
+
 class Settings extends StatefulWidget {
   static var routeName = '/settings';
 
@@ -79,7 +82,17 @@ class _SettingsState extends State<Settings> {
             children: <Widget>[
               Text("Logout"),
               IconButton(
-                  icon: Image.asset('images/signout.png'), onPressed: () {})
+                  icon: Image.asset('images/signout.png'),
+                  onPressed: () async {
+                    await FirebaseAuth.instance
+                        .signOut()
+                        .then((_) => print("signed out "));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Login(),
+                        ));
+                  })
             ],
           ),
         ],

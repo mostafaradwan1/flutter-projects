@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quiz_app/loading.dart';
 
 import 'package:quiz_app/providers/questionsProvider.dart';
 import 'answers.dart';
@@ -16,53 +17,72 @@ var db = FirebaseFirestore.instance;
 class VideoCourseEposide extends StatefulWidget {
   static var routeName = '/eposide';
 
-  @required
   final textHeader;
-  @required
   final text;
-  @required
   final navigateTo;
-  @required
   final color;
-  @required
   final textColor;
+  final courseId;
   VideoCourseEposide(
       {this.text,
       this.navigateTo,
       this.color,
       this.textColor,
-      this.textHeader});
+      this.textHeader,
+      this.courseId});
 
   @override
   _VideoCourseEposideState createState() => _VideoCourseEposideState();
 }
 
+@override
 class _VideoCourseEposideState extends State<VideoCourseEposide> {
-  @override
+  CollectionReference courses =
+      FirebaseFirestore.instance.collection('courses');
+
   var count = 0;
   var questionsAndANswers;
-  var lessonsQuestions = [];
-  var cLessons = db.collection('courses').doc('C Course').collection('Lessons');
-  getCCourse() async {
-    cLessons.doc(widget.textHeader).get().then((snap) {
-      setState(() {
-        questionsAndANswers = snap.data()['questions'];
-        count = snap.data()['questionsCount'];
-        // use set state
-        print(lessonsQuestions);
-      });
-    });
-  }
+  
 
   @override
   void initState() {
-    getCCourse();
+    courses
+        .doc(widget.courseId)
+        .collection("Lessons")
+        .doc(widget.textHeader)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        print('Document exists on the database');
+        print(widget.textHeader);
+        print(widget.courseId);
+
+        // print(questions);
+
+        count = documentSnapshot.data()['questionsCount'];
+        questionsAndANswers = documentSnapshot.data()['questions'];
+        print(questionsAndANswers);
+      }
+    });
+
     super.initState();
   }
 
   Widget build(BuildContext context) {
-    final quizData = Provider.of<QuizProvider>(context);
-    return Scaffold(
+    // final quizData = Provider.of<QuizProvider>(context);
+     return FutureBuilder<DocumentSnapshot>(
+      future: courses.doc(widget.courseId).collection("Lessons").doc(widget.textHeader).get(),
+      builder:
+          (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
+
+        if (snapshot.hasError) {
+          return Text("Something went wrong");
+        }
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          final quizData = Provider.of<QuizProvider>(context);
+          Map<String, dynamic> data = snapshot.data.data();
+          return Scaffold(
         resizeToAvoidBottomPadding: false,
         backgroundColor: Colors.teal, //FF15162B // 0xFFF2F2F2
         appBar: MediaQuery.of(context).orientation == Orientation.portrait
@@ -90,8 +110,7 @@ class _VideoCourseEposideState extends State<VideoCourseEposide> {
                       questionsAndANswers[quizData.questionIndex]
                           ['questionText'],
                     ),
-                    ...(questionsAndANswers[quizData.questionIndex]['answers']
-                            as List)
+                    ...(questionsAndANswers[quizData.questionIndex]['answers'])
                         .map((answer) {
                       return Answer(
                           answer: answer,
@@ -99,9 +118,23 @@ class _VideoCourseEposideState extends State<VideoCourseEposide> {
                     }).toList()
                   ],
                 )
-              : ChangeNotifierProvider(
-                  create: (context) => QuizProvider(),
-                  child: Result(quizData.totalScore, quizData.resetQuiz)),
+              : Text('no questions')
+
+         
         ]));
+
+        }
+
+        return Text("loading");
+      },
+    );
   }
-}
+
+  }
+
+
+
+
+
+
+ 
