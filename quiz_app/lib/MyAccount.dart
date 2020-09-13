@@ -1,19 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'appbar.dart';
 import 'header.dart';
 
+FirebaseFirestore firestore = FirebaseFirestore.instance;
+String userPhoneNumber = FirebaseAuth.instance.currentUser.phoneNumber;
+
 class MyAccount extends StatelessWidget {
   static var routeName = '/myaccount';
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _genderController = TextEditingController();
+  final TextEditingController _tshirtSizeController = TextEditingController();
 
-  final accountDetails = [
-    "Name",
-    "Email",
-    "Phone",
-    "T-shirst Size",
-    "Gender",
-    "codeforces Handle",
-    "Birthday"
-  ];
   final shadows = <Shadow>[
     Shadow(
       offset: Offset(1.0, 2.0),
@@ -47,6 +47,7 @@ class MyAccount extends StatelessWidget {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
+                    controller: _nameController,
                   ),
                 ),
                 Text(
@@ -64,6 +65,7 @@ class MyAccount extends StatelessWidget {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
+                    controller: _emailController,
                   ),
                 ),
                 Text(
@@ -81,6 +83,8 @@ class MyAccount extends StatelessWidget {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
+                    initialValue: userPhoneNumber,
+                    readOnly: true,
                   ),
                 ),
                 Text(
@@ -99,6 +103,7 @@ class MyAccount extends StatelessWidget {
                       fillColor: Colors.white,
                       border: OutlineInputBorder(),
                     ),
+                    controller: _tshirtSizeController,
                   ),
                 ),
                 Text(
@@ -116,6 +121,7 @@ class MyAccount extends StatelessWidget {
                     decoration: InputDecoration(
                       border: OutlineInputBorder(),
                     ),
+                    controller: _genderController,
                   ),
                 ),
                 RaisedButton(
@@ -143,7 +149,10 @@ class MyAccount extends StatelessWidget {
                           fontSize: 25,
                           fontWeight: FontWeight.normal),
                     ),
-                    Text("👑",style: TextStyle(fontSize: 20),),
+                    Text(
+                      "👑",
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ],
                 ),
               ],
