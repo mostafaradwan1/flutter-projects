@@ -200,7 +200,7 @@ class _OTPScreenState extends State<OTPScreen> {
   void _onFormSubmitted() async {
     AuthCredential _authCredential = PhoneAuthProvider.getCredential(
         verificationId: _verificationId, smsCode: _pinEditingController.text);
-    print("_onFormSubmitted verificationId"+_verificationId);
+    print("_onFormSubmitted verificationId "+_verificationId);
     _firebaseAuth.signInWithCredential(_authCredential).then((value) {
       if (value.user != null) {
         // Handle loogged in state

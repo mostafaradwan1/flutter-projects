@@ -71,6 +71,7 @@ class MyApp extends StatefulWidget {
   }
 }
 
+@override
 class _MyAppState extends State<MyApp> {
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
   @override //(to make clear you are not accedently override ) not required decorator provided by flutter to make code cleaner
